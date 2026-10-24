@@ -7,7 +7,7 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 DEBUG = os.getenv("DEBUG", "False").lower() == "true"
 
 ALLOWED_HOSTS = ["*"]  # разрешаем доступ всем
-
+load_dotenv(BASE_DIR / ".env")
 
 INSTALLED_APPS = [
     "django.contrib.admin",
