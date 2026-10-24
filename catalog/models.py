@@ -1,6 +1,7 @@
+from decimal import Decimal
+
 from django.core.validators import MinValueValidator
 from django.db import models
-from decimal import Decimal
 
 # Create your models here.
 
@@ -63,6 +64,7 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
+
 
 class Contact(models.Model):
     name = models.EmailField(verbose_name="Имя")
