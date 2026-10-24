@@ -1,0 +1,57 @@
+[
+  {
+    "model": "catalog.category",
+    "pk": 1,
+    "fields": {
+      "name": "Телефоны",
+      "description": "Мобильные телефоны"
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 2,
+    "fields": {
+      "name": "Телевизоры",
+      "description": "Телевизоры отличные"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 3,
+    "fields": {
+      "name": "Samsung Galaxy S25 Ultra",
+      "description": "Отличный телефон",
+      "image": "",
+      "price": "55000.00",
+      "category": 1,
+      "created_at": "2026-10-24T20:53:19.437Z",
+      "updated_at": "2026-10-24T21:23:08.744Z"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 5,
+    "fields": {
+      "name": "Haier 32 led",
+      "description": "Отличный телевизор",
+      "image": "",
+      "price": "16000.00",
+      "category": 2,
+      "created_at": "2026-10-24T20:57:21.676Z",
+      "updated_at": "2026-10-24T20:57:21.676Z"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 6,
+    "fields": {
+      "name": "Samsung 55",
+      "description": "Отличный телевизор",
+      "image": "",
+      "price": "46000.00",
+      "category": 2,
+      "created_at": "2026-10-24T20:58:21.331Z",
+      "updated_at": "2026-10-24T20:58:21.331Z"
+    }
+  }
+]
