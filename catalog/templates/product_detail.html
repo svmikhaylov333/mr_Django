@@ -1,0 +1,31 @@
+{% extends 'home.html' %}
+{%block content %}
+<div class="container">
+    <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+        <h1 class="display-4">Mr. Django</h1>
+        <p class="lead">Магазин электроники</p>
+    </div>
+    <div class="row text-center">
+
+                <div class="col-12">
+                    <div class="card mb-4 box-shadow">
+                        <div class="card-header">
+                            <h4 class="my-0 font-weight-normal">
+                                {{ product.name }}{% if product.name|length < 19 %}<br>&nbsp;{% endif %}
+                            </h4>
+                        </div>
+                        <div class="card-body">
+                            <h1 class="card-title pricing-card-title">{{ product.price }} руб.</h1>
+
+                            <ul class="list-unstyled mt-3 mb-4 text-start m-3">
+                                <li>{{ product.description|linebreaksbr}}</li>
+                            </ul>
+                            <button type="button" class="btn btn-lg btn-block btn-outline-primary">Купить</button>
+                        </div>
+                    </div>
+                </div>
+
+
+    </div>
+</div>
+{% endblock %}
