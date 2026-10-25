@@ -4,11 +4,12 @@ from pathlib import Path
 from dotenv import load_dotenv
 
 BASE_DIR = Path(__file__).resolve().parent.parent
+load_dotenv(BASE_DIR / ".env")
 SECRET_KEY = os.getenv("SECRET_KEY")
 DEBUG = os.getenv("DEBUG", "False").lower() == "true"
 
 ALLOWED_HOSTS = ["*"]  # разрешаем доступ всем
-load_dotenv(BASE_DIR / ".env")
+
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -102,6 +103,10 @@ USE_TZ = True
 STATIC_URL = "static/"
 
 STATICFILES_DIRS = (BASE_DIR / "static",)
+
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+MEDIA_URL = "media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 # Email
 # https://docs.djangoproject.com/en/6.1/topics/email/#topic-email-configuration

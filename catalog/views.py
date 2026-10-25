@@ -4,13 +4,13 @@ from django.shortcuts import render
 from .models import Contact, Product
 
 
-def home(request):
+def products_list(request):
     latest_product_list = Product.objects.order_by("-created_at")[:5]
     print("Последние 5 созданных продуктов")
     for product in latest_product_list:
         print(product.name)
     context = {"latest_product_list": latest_product_list}
-    return render(request, "home.html", context)
+    return render(request, "products_list.html", context)
 
 
 def contacts(request):
