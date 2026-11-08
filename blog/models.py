@@ -1,21 +1,22 @@
 from django.db import models
 
+
 class BlogPost(models.Model):
     title = models.CharField(
         max_length=200,
         verbose_name="Заголовок",
-        help_text="Введите заголовок записи",
+        # help_text="Введите заголовок записи",
     )
     content = models.TextField(
         verbose_name="Содержимое",
-        help_text="Введите текст записи",
+        # help_text="Введите текст записи",
     )
     preview = models.ImageField(
         upload_to="blog/previews/",
         blank=True,
         null=True,
         verbose_name="Превью(изображение)",
-        help_text="Загрузите изображение для превью",
+        # help_text="Загрузите изображение для превью",
     )
     created_at = models.DateTimeField(
         auto_now_add=True,
@@ -23,8 +24,8 @@ class BlogPost(models.Model):
     )
     is_published = models.BooleanField(
         default=False,
-        verbose_name="Признак публикации",
-        help_text="Отметьте, если запись опубликована",
+        verbose_name="Опубликовать",
+        # help_text="Отметьте, если запись опубликована",
     )
     views_count = models.PositiveIntegerField(
         default=0,
@@ -38,7 +39,6 @@ class BlogPost(models.Model):
 
     def __str__(self):
         return self.title
-
 
 
 # заголовок,
