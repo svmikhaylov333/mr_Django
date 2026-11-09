@@ -1,7 +1,5 @@
-from django.http import HttpResponse
-from django.shortcuts import get_object_or_404, render
-from django.views import View
-from django.views.generic import DetailView, ListView
+from django.views.generic import DetailView, ListView, CreateView
+from django.urls import reverse_lazy
 
 from .models import Contact, Product
 
@@ -14,17 +12,12 @@ class ProductDetailView(DetailView):
     model = Product
 
 
-class ProductContactView(View):
-    def get(self, request):
-        return render(request, "catalog/contacts.html")
+class ProductContactView(CreateView):
+    model = Contact
+    fields = ["name", "phone", "message"]
+    template_name = "catalog/contacts.html"
+    success_url = reverse_lazy("catalog:contacts")
 
-    def post(self, request):
-        name = request.POST.get("name")
-        phone = request.POST.get("phone")
-        message = request.POST.get("message")
-        print(f"Обратная связь: {name}, тел. {phone}: {message}")
-        if name and phone and message:
-            Contact.objects.create(name=name, phone=phone, message=message)
-            return HttpResponse(f"Спасибо, {name}! Мы скоро свяжемся с Вами!")
-
-        return HttpResponse("Ошибка: заполните все поля!")
+    def form_valid(self, form):
+        print(f"Обратная связь: {form.cleaned_data['name']}, тел. {form.cleaned_data['phone']}")
+        return super().form_valid(form)
