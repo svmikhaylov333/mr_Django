@@ -56,6 +56,14 @@ python manage.py runserver
 ```bash
 poetry install --no-root
 ```
+### Проверка качества кода
+
+```bash
+flake8 .
+black .
+isort .
+mypy .
+```
 
 ## Deploy и CI/CD
 На текущем этапе CI/CD отсутствует.
