@@ -29,7 +29,7 @@ class Product(models.Model):
     name = models.CharField(
         max_length=100,
         verbose_name="Название продукта",
-        help_text="Введите название продукта",
+        # help_text="Введите название продукта",
     )
     description = models.TextField(verbose_name="Описание продукта")
     image = models.ImageField(

@@ -9,13 +9,23 @@ FORBIDDEN_WORDS = ["казино", "криптовалюта",
 class ProductForm(ModelForm):
     class Meta:
         model = Product
-        fields = ['description', 'price', 'category', 'image']
+        fields = ['name', 'description', 'price', 'category', 'image']
 
         # fields = "__all__"
         # exclude = ('name',)
 
+
     def __init__(self, *args, **kwargs):
         super(ProductForm, self).__init__(*args, **kwargs)
+        
+        if self.instance and self.instance.pk:
+            self.fields['name'].disabled = True
+
+
+        self.fields['name'].widget.attrs.update({
+            'class': 'form-control',
+            'placeholder': 'Введите название продукта'
+        })
         self.fields['description'].widget.attrs.update({
             'class': 'form-control',
             'placeholder': 'Заполните описание'
@@ -36,6 +46,7 @@ class ProductForm(ModelForm):
         for field_name, field in self.fields.items():
             if self.errors.get(field_name):
                 field.widget.attrs['class'] += ' is-invalid'
+
 
     def clean_description(self):
         description = self.cleaned_data.get('description')
@@ -62,8 +73,8 @@ class ProductForm(ModelForm):
             img = Image.open(image)
             if img.format not in ('JPEG', 'PNG'):
                 raise ValidationError('Недопустимый формат')
-        except Exception as exp:
-            raise ValidationError(exp)
+        except Exception:
+            raise ValidationError('Недопустимый формат')
 
         return image
 

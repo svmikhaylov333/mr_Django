@@ -5,8 +5,10 @@
         <h1 class="display-4">Mr. Django</h1>
         <p class="lead">Магазин электроники</p>
     </div>
+
     <div class="row text-center" >
             {% for product in object_list %}
+
                 <div class="col-3" >
                     <div class="card mb-4 box-shadow">
                         <div class="card-header">
@@ -40,5 +42,8 @@
             {% endfor %}
 
     </div>
+        <div class="mb-4">
+            <a href="{% url 'catalog:product_create' %}" class="btn btn-primary">Добавить продукт</a>
+        </div>
 </div>
 {% endblock %}
