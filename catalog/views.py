@@ -2,6 +2,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import DetailView, ListView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy, reverse
 
+from .forms import ProductForm
 from .models import Contact, Product
 
 
@@ -15,9 +16,9 @@ class ProductDetailView(DetailView):
 
 class ProductUpdateView(UpdateView):
     model = Product
-    fields = ["name", "price", "description", "image"]
+    form_class = ProductForm
     template_name = "catalog/product_update.html"
-    success_url = reverse_lazy("catalog:products")
+    success_url = reverse_lazy("catalog:products_list")
 
     def get_success_url(self):
         return reverse("catalog:product_detail", kwargs={"pk": self.object.pk})
