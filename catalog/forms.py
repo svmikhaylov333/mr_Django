@@ -19,3 +19,9 @@ class ProductForm(ModelForm):
         if found:
             raise ValidationError(f'Описание содержит запрещенные слова: {",".join(found)}')
         return description
+
+    def clean_price(self):
+        price = self.cleaned_data.get('price')
+        if price < 0:
+            raise ValidationError('Цена не может быть отрицательной.')
+        return price
