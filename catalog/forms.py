@@ -1,3 +1,4 @@
+from PIL import Image
 from django.forms import ModelForm
 from django.core.exceptions import ValidationError
 from catalog.models import Product
@@ -48,3 +49,22 @@ class ProductForm(ModelForm):
         if price < 0:
             raise ValidationError('Цена не может быть отрицательной.')
         return price
+
+    def clean_image(self):
+        image = self.cleaned_data.get('image')
+        max_size = 5242880  # 5Mb
+
+        if not image:
+            return image
+        if image.size > max_size:
+            raise ValidationError(f"Файл слишком большой. Максимальный размер — 5 МБ")
+        try:
+            img = Image.open(image)
+            if img.format not in ('JPEG', 'PNG'):
+                raise ValidationError('Недопустимый формат')
+        except Exception as exp:
+            raise ValidationError(exp)
+
+        return image
+
+
