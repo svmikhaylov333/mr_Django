@@ -1,3 +1,5 @@
+import uuid
+
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 
@@ -7,6 +9,8 @@ class User(AbstractUser):
     phone = models.CharField(max_length=11, verbose_name="phone", blank=True, null=True, help_text="Введите номер телефона")
     country = models.CharField(max_length=20, verbose_name="country", blank=True, null=True, help_text="Выберите страну")
     avatar = models.ImageField(upload_to="users/avatars/", verbose_name="avatar", blank=True, null=True, help_text="Загрузите аватар")
+
+    token = models.CharField(max_length=100, verbose_name="token", blank=True, null=True)
 
 
     USERNAME_FIELD = "email"
